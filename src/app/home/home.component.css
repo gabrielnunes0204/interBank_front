@@ -1,0 +1,76 @@
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: rgba(72, 72, 212, 0.959);
+}
+
+.menu ul li,
+.menu h1 {
+    color: #fff;
+}
+
+.menu ul li {
+    list-style: none;
+    cursor: pointer;
+}
+
+form {
+    width: 50%;
+    padding: 25px;
+    margin: 30px auto;
+    box-shadow: 1px 1px 4px #333;
+    border: 1px solid #333;
+}
+
+form h2 {
+    text-align: center;
+}
+
+form div {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+form div article {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: block;
+    margin: 5px 0;
+}
+
+form input,
+form input[type="date"] {
+    font-size: 1rem;
+    width: 15rem;
+    padding: 4px;
+    outline: none;
+}
+
+form #confirm, form #clear {
+    font-size: 1rem;
+    padding: 10px;
+    box-shadow: 1px 1px 8px #333;
+    color: #fff;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+form #confirm {
+    background: rgba(72, 72, 212, 0.959);
+}
+
+form #clear {
+    background: tomato;   
+}
+
+form .botoes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
