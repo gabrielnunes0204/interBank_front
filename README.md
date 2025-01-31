@@ -1,59 +1,53 @@
-# InterBankFront
+InterBank Front
+Projeto de Transferência Bancária Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+🚀 Tecnologias Utilizadas
 
-## Development server
+Angular
+RxJS
+HttpClient
+📌 Funcionalidades do Frontend
 
-To start a local development server, run:
+🔹 Listar Transferências
+A página exibe todas as transferências agendadas, com a capacidade de visualizar detalhes como nome do usuário, contas envolvidas, valor da transferência e status.
 
-```bash
+🔹 Criar Transferência
+O formulário permite que o usuário preencha os dados necessários para realizar uma transferência bancária agendada. O front-end envia esses dados para a API do back-end para agendamento.
+
+Exemplo de Payload para o Formulário de Transferência:
+{
+  "nomeUsuario": "João da Silva",
+  "documentoUsuario": "123.456.789-00",
+  "contaOrigem": 1001,
+  "contaDestino": 2002,
+  "valorTransferencia": 1500.00,
+  "valorTaxa": 10.00,
+  "dataHoraTransferencia": "2025-02-01T10:00:00",
+  "dataHoraAgendamento": "2025-02-01T08:00:00"
+}
+
+Exemplo de Resposta de Sucesso:
+{
+  "mensagem": "Transferência agendada com sucesso!",
+  "valorTaxado": 10.00,
+  "isSucesso": true
+}
+
+🔹 Exibição das Transferências
+O front-end consome a API do back-end para listar todas as transferências feitas, exibindo uma tabela com os agendamentos realizados.
+
+📌 Como executar o projeto
+
+Clone o repositório:
+git clone https://github.com/seu-repositorio.git
+
+Acesse a pasta do projeto:
+cd interBank_front
+
+Instale as dependências:
+npm install
+
+Execute o servidor de desenvolvimento:
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+A aplicação estará disponível em: http://localhost:4200
