@@ -28,6 +28,7 @@ h2 {
 table {
     margin: 0 auto;
     text-align: center;
+    width: 80vw;
 }
 
 table th {
@@ -35,6 +36,6 @@ table th {
 }
 
 table td, table th {
-    padding: 25px;
+    padding: 20px;
     border: 1px solid #333;
 }

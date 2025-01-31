@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RequestService } from '../service/request.service';
-import { TransferenciaModel } from '../model/filtro-agendamento.model';
+import { TransferenciaModel } from '../model/transferencia.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -36,5 +36,9 @@ export class VisualizarAgendaComponent implements OnInit {
       },
       complete: () => {}
     });
+  }
+
+  somatoriaTaxaTransferencia(valorTransferencia?: number, valorTaxa?: number): number {
+    return (valorTransferencia ?? 0) + (valorTaxa ?? 0);
   }
 }

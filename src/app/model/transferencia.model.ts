@@ -5,6 +5,7 @@ export interface TransferenciaModel {
     contaOrigem: number,
     contaDestino: number,
     valorTransferencia: number,
+    valorTaxa?: number,
     dataHoraTransferencia: Date,
     dataHoraAgendamento: Date
 }
