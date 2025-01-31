@@ -4,7 +4,7 @@ import { RequestService } from '../service/request.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TransferenciaModel } from '../model/filtro-agendamento.model';
+import { TransferenciaModel } from '../model/transferencia.model';
 import { interval } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { RetornoAgendamentoModel } from '../model/retorno-agendamento.model';
@@ -53,12 +53,13 @@ export class HomeComponent implements OnInit {
     this.requestService.createTransfer(this.filtroAgendamento).subscribe({
       next: (data: RetornoAgendamentoModel) => {
         if (data.isSucesso) {
-          Swal.fire('Sucesso', data.mensagem, 'success');
-
           if (data.valorTaxado == 0) {
-
+            Swal.fire('Sucesso',
+              data.mensagem + '. Você não será taxado por essa transferência.', 'success');
+          } else {
+            Swal.fire('Sucesso', 
+              data.mensagem + '. Você será taxado em: R$ ' + data.valorTaxado, 'success');
           }
-
         } else {
           Swal.fire('Erro', data.mensagem, 'error');
         }
