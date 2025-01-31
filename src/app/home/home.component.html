@@ -1,8 +1,8 @@
 <div class="container">
     <nav class="menu">
-        <h1> InterBank </h1>
+        <h1 [routerLink]="['']"> InterBank </h1>
         <ul>
-            <li> Visualizar Agendamentos </li>
+            <li [routerLink]="['/visualizar']"> Visualizar Agendamentos </li>
         </ul>
     </nav>
 
@@ -10,12 +10,12 @@
         <h2> Agendamento de Transferências </h2>
         <div>
             <article>
-                <label for="nomeUsuario"> Seu nome: </label>
+                <label for="nomeUsuario"> Nome: </label>
                 <input type="string" id="nomeUsuario" name="nomeUsuario"
                     [(ngModel)]="filtroAgendamento.nomeUsuario">
             </article>
             <article>
-                <label for="documentoUsuario"> Seu documento: </label>
+                <label for="documentoUsuario"> Documento: </label>
                 <input type="number" id="documentoUsuario" name="documentoUsuario"
                     [(ngModel)]="filtroAgendamento.documentoUsuario">
             </article>
@@ -40,7 +40,7 @@
             </article>
             <article>
                 <label for="dataHoraTransferencia"> Data/Hora transferência: </label>
-                <input type="datetime-local" [(ngModel)]="filtroAgendamento.dataHoraTransferencia"
+                <input type="datetime-local" [(ngModel)]="dataHoraTransferencia"
                     id="dataHoraTransferencia" name="dataHoraTransferencia">
             </article>
         </div>

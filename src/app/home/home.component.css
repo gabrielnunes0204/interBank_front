@@ -11,6 +11,10 @@
     color: #fff;
 }
 
+.menu h1 {
+    cursor: pointer;
+}
+
 .menu ul li {
     list-style: none;
     cursor: pointer;
