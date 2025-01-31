@@ -18,8 +18,10 @@
                     <th>Conta Origem</th>
                     <th>Conta Destino</th>
                     <th>Valor Transferência</th>
-                    <th>Data Hora Agendamento</th>
-                    <th>Data Hora Transferência</th>
+                    <th>Valor Taxa</th>
+                    <th>Taxa+Transferência</th>
+                    <th>Dt/Hr Agendamento</th>
+                    <th>Dt/Hr Transferência</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +31,10 @@
                     <td> {{ item.contaOrigem }} </td>
                     <td> {{ item.contaDestino }} </td>
                     <td> {{ item.valorTransferencia | currency:'BRL':'symbol' }} </td>
+                    <td> {{ item.valorTaxa | currency:'BRL':'symbol' }} </td>
+                    <td> {{ somatoriaTaxaTransferencia(
+                        item.valorTransferencia,
+                        item.valorTaxa) | currency:'BRL':'symbol' }} </td>
                     <td> {{ item.dataHoraAgendamento | date: 'dd/MM/yyyy HH:mm' }} </td>
                     <td> {{ item.dataHoraTransferencia | date: 'dd/MM/yyyy HH:mm' }} </td>
                 </tr>
