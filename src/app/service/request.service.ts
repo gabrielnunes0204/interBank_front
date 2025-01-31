@@ -12,11 +12,11 @@ export class RequestService {
 
     constructor(private http: HttpClient) {}
 
-    getList(): Observable<any> {
+    getTransfers(): Observable<any> {
         return this.http.get<any>(this.url);
     }
 
-    createRequest(data: any): Observable<any> {
+    createTransfer(data: any): Observable<any> {
         return this.http.post<any>(this.url, data);
     }
 }
