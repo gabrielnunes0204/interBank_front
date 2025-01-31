@@ -1,10 +1,11 @@
-export interface AgendamentoModel {
+export interface TransferenciaModel {
+    id?: number,
     nomeUsuario: string,
     documentoUsuario: string,
     contaOrigem: number,
     contaDestino: number,
     valorTransferencia: number,
-    dataHoraTransferencia: String,
+    dataHoraTransferencia: Date,
     dataHoraAgendamento: Date
 }
     
