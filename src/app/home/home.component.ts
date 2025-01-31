@@ -4,8 +4,10 @@ import { RequestService } from '../service/request.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AgendamentoModel } from '../model/filtro-agendamento.model';
+import { TransferenciaModel } from '../model/filtro-agendamento.model';
 import { interval } from 'rxjs';
+import { RouterModule } from '@angular/router';
+import { RetornoAgendamentoModel } from '../model/retorno-agendamento.model';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,7 @@ import { interval } from 'rxjs';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     HttpClientModule
   ],
   templateUrl: './home.component.html',
@@ -20,7 +23,8 @@ import { interval } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  filtroAgendamento = {} as AgendamentoModel;
+  filtroAgendamento = {} as TransferenciaModel;
+  dataHoraTransferencia: any = null;
 
   constructor(private requestService: RequestService) {}
 
@@ -37,15 +41,35 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.requestService.createRequest(this.filtroAgendamento).subscribe({
-      next: (data) => {
-        console.log('Dados recebidos: ', data);
+    if (!this.validAccounts()) {
+      Swal.fire('Aviso', 'As contas de origem e destino devem ser diferentes.', 'info');
+      return;
+    }
+
+    const dataUtc = new Date(this.dataHoraTransferencia + 'Z');
+    this.filtroAgendamento.dataHoraTransferencia = 
+      new Date(dataUtc.getTime() - dataUtc.getTimezoneOffset() * 60000);
+
+    this.requestService.createTransfer(this.filtroAgendamento).subscribe({
+      next: (data: RetornoAgendamentoModel) => {
+        if (data.isSucesso) {
+          Swal.fire('Sucesso', data.mensagem, 'success');
+
+          if (data.valorTaxado == 0) {
+
+          }
+
+        } else {
+          Swal.fire('Erro', data.mensagem, 'error');
+        }
       },
       error: (error) => {
-        Swal.fire('Erro', 'Erro ao solicitar agendamento.', 'error');
-        console.error('rro ao solicitar agendamento: ', error);
+        Swal.fire('Erro', 'Erro ao solicitar transferência.', 'error');
+        console.error('Erro ao solicitar transferência: ', error);
       },
-      complete: () => {}
+      complete: () => {
+        this.clear();
+      }
     });
   }
   
@@ -70,7 +94,16 @@ export class HomeComponent implements OnInit {
       return false;
     }
 
-    if (!this.filtroAgendamento.dataHoraTransferencia) {
+    if (!this.dataHoraTransferencia) {
+      return false;
+    }
+
+    return true;
+  }
+
+  validAccounts(): boolean {
+    if ((this.filtroAgendamento.contaOrigem && this.filtroAgendamento.contaDestino) &&
+      (this.filtroAgendamento.contaOrigem === this.filtroAgendamento.contaDestino)) {
       return false;
     }
 
@@ -78,6 +111,7 @@ export class HomeComponent implements OnInit {
   }
 
   clear() {
-    this.filtroAgendamento = {} as AgendamentoModel;
+    this.filtroAgendamento = {} as TransferenciaModel;
+    this.dataHoraTransferencia = null;
   }
 }
